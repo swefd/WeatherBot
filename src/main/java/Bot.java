@@ -10,12 +10,14 @@ import java.io.IOException;
 
 public class Bot extends TelegramLongPollingBot {
     final private String NAME = "RobocodeWeatherBot";
-    final private String API_TOKEN = "5195887445:AAHf30VgMx4bxwlhiidVvOHjYSlhdqDp1j0";
+    final private String API_TOKEN = "GENERATE YOUR OWN KEY :P";
 
-    final private String HELLO = "Привіт, цей бот передбачає майбутнє XD " +
-            "\nМагічний прогноз погоди для котиків " +
-            "\nСкористайся командою /get {Місто} і ти отримаєш актуальний прогноз погоди у своєму місті" +
-            "\nТакож можеш просто відіслати мені свою геолокацію";
+    final private String HELLO = "Привіт, цей бот передбачає майбутнє." +
+            "☀️\uD83C\uDF24⛅️☁️\uD83C\uDF27⛈\uD83C\uDF28\uD83D\uDCA8\uD83C\uDF0A \n" +
+            "\nМагічний прогноз погоди для котиків \uD83D\uDC08" +
+            "\n \nСкористайся командою /get {Місто} і ти отримаєш актуальний прогноз погоди у своєму місті." +
+            "\n \nТакож можеш відіслати мені свою геолокацію і я зроблю день сонячним у твоєму районі :D" +
+            "\nАбо просто розкажу яка буде погода)";
 
     @Override
     public String getBotUsername() {
@@ -47,7 +49,6 @@ public class Bot extends TelegramLongPollingBot {
                 getForecast(msg, weather, weather.createUrl(city));
             }
         }else if (location != null){
-            System.out.println("Location OK");
             getForecast(msg, weather, weather.createUrl(location));
         }
 
@@ -66,9 +67,7 @@ public class Bot extends TelegramLongPollingBot {
             e.printStackTrace();
         }
         try {
-            sendMessage(msg, "Прогноз погоди");
             sendMessage(msg, weather.parseJSON());
-
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
